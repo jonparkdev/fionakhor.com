@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="{{@site.lang}}">
+  <head>
+
+    {{!-- Document Settings --}}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+
+    {{!-- Base Meta --}}
+    <title>{{meta_title}}</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{!-- Styles'n'Scripts --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/tailwind.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/posts.css"}}" />
+
+    {{!-- This tag outputs SEO meta+structured data and other important settings --}}
+    {{ghost_head}}
+
+  </head>
+  <body class="{{body_class}}">
+    <div class="dimmer" onclick="closeMobileNav(5)"></div>
+    <div class="mobile-drawer" onclick="closeMobileNav(5)">
+      <div class="close-button" onclick="closeMobileNav(5)"><img src={{asset "images/icon-arrow-left.svg"}} alt="close menu"/></div>
+      {{#if @site.navigation}}
+          {{navigation}}
+      {{/if}}
+      <div class="social-icon-container">
+        <a class="social-icon" href="https://www.instagram.com/fijonez/" title="Instagram fijonez" target="_blank" rel="noopener">
+          <img src={{asset "images/instagram.png"}} alt="instagram"/>
+          <span class="title"> fijonez </span>
+        </a>
+        <a class="social-icon" href="https://www.instagram.com/fionadoesart/" title="Instagram fionadoesart" target="_blank" rel="noopener">
+          <img src={{asset "images/instagram.png"}} alt="instagram"/>
+          <span class="title">fionadoesart </span>
+        </a>
+      </div>
+    </div>
+    <div class="site-wrapper">
+      {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+      {{{body}}}
+
+    </div>
+
+
+    <script>
+      function openMobileNav(spd) {
+        let dimmedElement = document.querySelector(".dimmer");
+        document.documentElement.classList.add('drawer-opened')
+        dimmedElement.style.display = 'block'
+        if(dimmedElement.style.opacity === ''){
+          dimmedElement.style.opacity = 0;
+        //   dimmedElement.style.filter = "alpha(opacity="+100+")";
+        }
+
+        if(dimmedElement.style.opacity < .7){
+          let opac = 0;
+          let cycle = setInterval(increaseOpacity, spd);
+
+          function increaseOpacity() {
+            opac += 0.01;
+            if(opac >= .7) {
+              dimmedElement.style.opacity = .7;
+              opac = .7;
+              clearInterval(cycle);
+            }
+            dimmedElement.style.opacity = opac;
+            // dimmedElement.style.filter= "alpha(opacity=" + (opac * 100) + ")";
+          }
+        } else {
+          clearInterval(cycle)
+        }
+      }
+
+      function closeMobileNav(spd) {
+        let dimmedElement = document.querySelector(".dimmer");
+        document.documentElement.classList.remove('drawer-opened')
+        if(dimmedElement.style.opacity === ''){
+          dimmedElement.style.opacity = .7;
+        //   dimmedElement.style.filter = "alpha(opacity="+100+")";
+        }
+
+        if(dimmedElement.style.opacity >= 0){
+          let opac = .7;
+          let cycle = setInterval(increaseOpacity, spd);
+
+          function increaseOpacity() {
+            opac -= 0.01;
+            if(opac < 0) {
+              dimmedElement.style.opacity = 0;
+              opac = 0;
+              clearInterval(cycle);
+              dimmedElement.style.display = 'none'
+            }
+            dimmedElement.style.opacity = opac;
+            // dimmedElement.style.filter= "alpha(opacity=" + (opac * 100) + ")";
+          }
+        } else {
+          clearInterval(cycle)
+        }
+      }
+
+    </script>
+
+    {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
+    {{ghost_foot}}
+
+  </body>
+</html>

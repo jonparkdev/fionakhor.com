@@ -1,0 +1,246 @@
+@tailwind base;
+
+@tailwind components;
+
+/* Global Styles ****************************/
+.dimmer {
+  background: rgb(0, 0, 0);
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 90;
+}
+
+.drawer-opened .mobile-drawer {
+  -webkit-transform: translateX(0) !important;
+  transform: translateX(0) !important;
+  visibility: visible;
+}
+
+
+.pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px auto 45px
+}
+.pagination .page-number {
+  border: 1px solid #d9d9d9;
+  border-radius: 30px;
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 0;
+  padding: 16px 16px;
+}
+
+.pagination .pagination-left, .pagination .pagination-right {
+  flex: 2;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.pagination .pagination-right {
+  text-align: right;
+}
+
+.site-wrapper {
+  @apply flex min-h-full flex-col
+}
+
+.site-main {
+  @apply px-4
+}
+
+/* Homepage Styles ***************************/
+
+.home-page-header {
+
+}
+
+/* Navigation Styles *************************/
+
+.burger {
+  cursor: pointer;
+  height: 30px;
+  margin: auto 0 auto 16px;
+  padding: 0 8px;
+  position: relative;
+  width: 30px;
+}
+
+.burger:before, .burger:after {
+  background-color: #1a1a1a;
+  content: "";
+  height: 2px;
+  left: 9px;
+  position: absolute;
+  width: 12px;
+}
+
+.burger:after {
+    bottom: 11px;
+}
+
+.burger:before {
+    top: 11px;
+}
+
+.mobile-drawer {
+  background-color: #fff;
+  height: 100vh;
+  left: 0;
+  overflow-y: scroll;
+  padding: 60px 0 30px;
+  position: fixed;
+  top: 0;
+  -webkit-transform: translateX(-250px);
+  transform: translateX(-250px);
+  transition: -webkit-transform 0.4s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.4s ease-in-out;
+  width: 250px;
+  z-index: 90;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-drawer .close-button {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top:0;
+  right: 0;
+  margin: 16px;
+}
+
+.mobile-drawer .nav {
+  @apply list-none text-gray-500 text-lg
+}
+
+.mobile-drawer .social-icon-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px 0 20px;
+}
+
+.mobile-drawer .social-icon-container .social-icon {
+  padding-left: 6px;
+  width: 100%;
+  display: block;
+}
+
+.mobile-drawer .social-icon-container .social-icon span {
+  @apply text-lg text-teal-600
+}
+
+.mobile-drawer .social-icon-container .social-icon img {
+  width: 20px;
+  height: 20px;
+  display: inline;
+}
+
+.site-nav {
+  @apply flex h-16 items-center w-full mx-auto h-24
+}
+
+.site-nav a {
+  @apply text-gray-600
+}
+
+.site-nav a:hover {
+  @apply no-underline text-black
+}
+
+.site-nav .social-icons-container{
+  @apply flex
+}
+
+.site-nav .social-icons-container .social-icon {
+  @apply .inline-block p-3
+}
+
+.site-nav .social-icons-container .social-icon svg{
+  @apply flex h-4
+}
+
+.site-nav .social-icons-container .social-icon img{
+  @apply flex h-4
+}
+
+.site-nav .rss-button {
+  @apply p-3
+}
+
+.site-nav .rss-button svg{
+  @apply h-4
+}
+
+.site-nav .site-nav-logo {
+  @apply text-2xl text-black px-3 tracking-tight uppercase font-medium
+}
+
+.site-nav .site-nav-logo img {
+  @apply w-auto h-4 p-3
+}
+
+.site-nav .nav {
+  @apply flex px-0 list-none m-0 text-base
+}
+
+.site-nav .nav li {
+  @apply m-0 px-0 leading-normal
+}
+
+.site-nav .nav li a {
+  @apply p-3 block
+}
+
+.site-nav .nav-options-container {
+  @apply hidden
+}
+
+.nav-left-wrapper {
+  @apply flex-1
+}
+
+.nav-left {
+  @apply flex
+}
+
+.nav-right {
+  @apply flex hidden
+}
+
+@media(min-width: 640px) {
+  .site-nav {
+    @apply max-w-screen-sm
+  }
+}
+
+@media(min-width: 768px) {
+  .site-nav {
+    @apply max-w-screen-md
+  }
+
+  .burger {
+    @apply hidden
+  }
+
+  .site-nav .nav-options-container {
+    @apply block
+  }
+
+}
+
+@media(min-width: 1024px) {
+  .site-nav {
+    @apply max-w-screen-lg
+  }
+}
+
+
+@tailwind utilities;

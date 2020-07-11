@@ -1,0 +1,8 @@
+#dependencies
+/node_modules
+
+#ghost zipfile
+theme.zip
+
+#css
+/assets/css

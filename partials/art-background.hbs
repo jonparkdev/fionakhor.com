@@ -1,0 +1,115 @@
+{{!--
+Wow what the hell is going on in here even?
+
+Ok so, several templates use this big header with a giant BG image. Nice idea, but big images
+have a heavy impact on performance, so it's a good idea to make them responsive. Because we
+can only get the image dynamically using Handlebars, and we can only set the image to properly
+be a background image using CSS, we end up with a handful of inline styles.
+
+If the template in question has a background image, then we render responsive image styles
+for it, and apply those styles to the <header> tag. Else, we just output a <header> tag
+with a `no-image` class so we can style it accordingly.
+--}}
+
+{{#if background}}
+
+<style type="text/css">
+    .hero-image {
+      background-image: url({{img_url background size='xl'}});
+      height: 50vw;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+
+    .hero-text {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+
+    .responsive-header-img {
+        position: relative;
+        background-image: url({{img_url background size='xl'}});
+        height: 30vw;
+        background-size: cover;
+        background-position: 0% 0%;
+    }
+
+    .trademark-container {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-80%, -50%);
+    }
+
+    .trademark-container img.instagram{
+      width: 100px;
+      height: 100px;
+    }
+
+    .trademark-container img.trademark{
+      width: 100%;
+    }
+
+
+    @media(max-width: 1000px) {
+        .responsive-header-img {
+            background-image: url({{img_url background size='l'}});
+            background-image: -webkit-image-set(url({{img_url background size='l'}}) 1x,
+                url({{img_url background size='xl'}}) 2x);
+            background-image: image-set(url({{img_url background size='l'}}) 1x,
+                url({{img_url background size='xl'}}) 2x);
+        }
+
+        .trademark-container img.instagram{
+          width: 50px;
+          height: 50px;
+        }
+
+        .trademark-container img.trademark{
+          width: 75%;
+        }
+    }
+
+    @media(max-width: 600px) {
+        .responsive-header-img {
+            height: 50vw;
+            background-position: 75% 0%;
+            background-image: url({{img_url background size='m'}});
+            background-image: -webkit-image-set(url({{img_url background size='m'}}) 1x,
+                url({{img_url background size='l'}}) 2x);
+            background-image: image-set(url({{img_url background size='m'}}) 1x,
+                url({{img_url background size='l'}}) 2x);
+        }
+        .trademark-container img.instagram{
+          width: 30px;
+          height: 30px;
+        }
+
+        .trademark-container img.trademark{
+          width: 60%;
+        }
+
+
+    }
+</style>
+<div class="responsive-header-img">
+  <a href="https://www.instagram.com/fionadoesart/" >
+    <div class="trademark-container">
+      <img class="instagram" src={{asset "images/instagram.png"}} alt="instagram"/>
+      <img class="trademark" src={{asset "images/trademark.png"}} alt="fiona does art"/>
+    </div>
+  </a>
+</div>
+{{else}}
+
+<div> </div>
+
+{{/if}}

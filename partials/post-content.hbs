@@ -1,0 +1,63 @@
+
+<div class="max-w-5xl mx-auto">
+  <header class="post-full-header">
+    <a href={{url}} class="home-template-title">
+      <h1 class="post-full-title">
+        {{title}}
+      </h1>
+    </a>
+    <h1 class="post-full-title post-template-title"> {{title}} </h1>
+    {{#if custom_excerpt}}
+    <p class="post-full-custom-excerpt">{{custom_excerpt}}</p>
+    {{/if}}
+    <div class="post-full-byline">
+      <section class="post-full-byline-content">
+          <section class="post-full-byline-meta">
+              <div class="byline-meta-content">
+                  {{#foreach authors}}
+                    <h4 class="author-name inline-block text-teal-500">
+                      {{name}}
+                      <span class="bull">&bull;</span>
+                    </h4>
+                  {{/foreach}}
+                  <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}">
+                    {{date format="D MMM YYYY"}}
+                  </time>
+                  <span class="byline-reading-time">
+                    <span class="bull">&bull;</span>
+                    {{reading_time}}
+                  </span>
+              </div>
+          </section>
+      </section>
+    </div>
+
+  </header>
+
+  {{#if feature_image}}
+  <figure class="post-full-image">
+      {{!-- This is a responsive image, it loads different sizes depending on device
+      https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+      <img
+          srcset="{{img_url feature_image size="s"}} 300w,
+                  {{img_url feature_image size="m"}} 600w,
+                  {{img_url feature_image size="l"}} 1000w,
+                  {{img_url feature_image size="xl"}} 2000w"
+          sizes="(max-width: 800px) 400px,
+              (max-width: 1170px) 1170px,
+                  2000px"
+          src="{{img_url feature_image size="xl"}}"
+          alt="{{title}}"
+      />
+  </figure>
+  {{/if}}
+
+  <article class="post-full {{post_class}}" >
+    <section class="post-full-content">
+        <div class="post-content">
+            {{content}}
+        </div>
+        <div class="border border-gray-300 mx-12 mt-8 mb-12 lg:mt-12 lg:mb-0 lg:mx-20" />
+    </section>
+  </article>
+</div>

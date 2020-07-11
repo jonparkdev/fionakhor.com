@@ -1,0 +1,42 @@
+<nav class="site-nav">
+    <div class="nav-left-wrapper">
+        <div class="nav-left">
+            <div class='burger' onclick='openMobileNav(5)'> </div>
+            {{#if @site.logo}}
+                <a class="site-nav-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a>
+            {{else}}
+                <a class="site-nav-logo" href="{{@site.url}}">{{@site.title}}</a>
+            {{/if}}
+            <div class="mx-6 my-2 border-r border-gray-400 hidden md:block"> </div>
+            <div class="nav-options-container">
+                {{#if @site.navigation}}
+                    {{navigation}}
+                {{/if}}
+                <!-- {{#is "post"}}
+                    <span class=" {{#unless @site.logo}}dash{{/unless}}">{{post.title}}</span>
+                {{/is}} -->
+            </div>
+        </div>
+    </div>
+    <div class="nav-right sm:flex">
+        {{#if @site.secondary_navigation}}
+            {{navigation type="secondary"}}
+        {{else}}
+            <div class="social-icons-container">
+                {{#if @site.facebook}}
+                    <a class="social-icon" href="{{facebook_url @site.facebook}}" title="Facebook" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
+                {{/if}}
+                {{#if @site.twitter}}
+                    <a class="social-icon" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
+                {{/if}}
+                <a class="social-icon" href="https://www.instagram.com/fijonez/" title="Instagram" target="_blank" rel="noopener">
+                  <img src={{asset "images/instagram.png"}} alt="instagram"/>
+                </a>
+            </div>
+        {{/if}}
+
+        {{#if @labs.members}}
+            <a class="subscribe-button" href="#subscribe">Subscribe</a>
+        {{/if}}
+    </div>
+</nav>
