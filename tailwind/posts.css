@@ -303,7 +303,7 @@ h6 {
 
 @media (max-width: 500px) {
     .post-full-header {
-        padding: 20px 0 35px;
+        padding: 40px 0 35px;
     }
 }
 
@@ -994,6 +994,10 @@ Usage (In Ghost editor):
     .author-avatar {
         width: 32px;
         height: 32px;
+    }
+
+    .post-full-byline {
+      margin-top: 8px;
     }
 
     .post-full-byline-meta {
